@@ -17,4 +17,4 @@ You can just open index.html with a browser of your choice.
 
 ### Added bonus feature tests
 
-I added a test for a future button which would remove an entry from the feed.
+I added tests for a future button which would remove an entry from the feed.

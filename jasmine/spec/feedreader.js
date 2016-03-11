@@ -82,15 +82,28 @@ $(function() {
     });
 
 
-    describe("Inintial Entries", function() {
+    describe("filling the feed", function() {
 
 
-        /* TODO: Write a test that ensures when the loadFeed
+        /* done: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+
+        // load the feed asynchronously from testing entries
+        beforeEach(function(done){
+            loadFeed(0, function(){
+                done();
+            })
+        });
+        // when the loadFeed function has been completed, test if the feed includes at least one entry element
+        // I would have rather solved this using .toContainElement('.entry') but that didnt work for me
+        it ('includes at least one entry class item', function(done){
+            expect($('.feed').find('.entry').length).toBeGreaterThan(0);
+            done();
+        })
     });
 
 

@@ -136,7 +136,40 @@ $(function() {
             done();
         })
 
-    })
+    });
+
+
+    describe("BONUS - Feed item remover button", function(){
+        /* This tests an imaginary delete button displayed next to each entry
+         */
+        var feedA;
+
+
+        // initialize a feed
+        beforeEach(function(done){
+            loadFeed(1, function(){
+                feedA = $('.feed');
+                done();
+            })
+        });
+
+
+        it ('displays a button for each entry', function(){
+            //check each entry, if it has a deleteButton attached
+            $('.feed').find('.entry').forEach(function(entry){
+                expect(entry.find('.deleteButton')).toExist();
+            });
+
+        });
+        it ('removes the link it is assigned to', function(){
+            // PUSH THE BUTTON
+            $('.feed').find('.entry')[0].find('.deleteButton').click();
+            //clicking this button would make the item disapear.
+            expect($('.feed').find('.entry')[0]).not.toBeVisible();
+        })
+
+
+    });
 
 
 }());

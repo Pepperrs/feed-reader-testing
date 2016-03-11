@@ -95,15 +95,12 @@ $(function() {
 
         // load the feed asynchronously from testing entries
         beforeEach(function(done){
-            loadFeed(0, function(){
-                done();
-            })
+            loadFeed(0, done)
         });
         // when the loadFeed function has been completed, test if the feed includes at least one entry element
         // I would have rather solved this using .toContainElement('.entry') but that didnt work for me
-        it ('includes at least one entry class item', function(done){
-            expect($('.feed').find('.entry').length).toBeGreaterThan(0);
-            done();
+        it ('includes at least one entry class item', function(){
+            expect($('.feed .entry').length).toBeGreaterThan(0);
         });
     });
 

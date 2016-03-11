@@ -39,10 +39,16 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* done: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        it ('have defined names', function(){
+            allFeeds.forEach(function (feed) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe(0);
+            })
+        });
     });
 
 
@@ -60,7 +66,7 @@ $(function() {
          * clicked and does it hide when clicked again.
          */
 
-    })
+    });
 
 
     describe("Inintial Entries", function() {
@@ -72,7 +78,7 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-    })
+    });
 
 
     describe("New Feed Selection", function(){

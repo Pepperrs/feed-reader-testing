@@ -30,14 +30,14 @@ $(function() {
 
 
         /* done: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
+         * in the allFeeds object and ensures it has an non empty URL defined
          * and that the URL is not empty.
          */
-        it ('have possible urls', function(){
+        it ('have non empty urls', function(){
             allFeeds.forEach(function (feed) {
                 expect(feed.url).toBeDefined();
-
-            })
+                expect(feed.url).not.toBeEmpty();
+            });
         });
 
 
@@ -48,8 +48,8 @@ $(function() {
         it ('have defined names', function(){
             allFeeds.forEach(function (feed) {
                 expect(feed.name).toBeDefined();
-                expect(feed.name).not.toBe(0); //toBe(0) checks for length of name String
-            })
+                expect(feed.name.length).not.toBe(0); //toBe(0) checks for length of name String
+            });
         });
     });
 
@@ -104,7 +104,7 @@ $(function() {
         it ('includes at least one entry class item', function(done){
             expect($('.feed').find('.entry').length).toBeGreaterThan(0);
             done();
-        })
+        });
     });
 
 
@@ -119,12 +119,12 @@ $(function() {
 
         // load the feed two times and save each feed so they can be compared
         beforeEach(function(done){
-            loadFeed(0)
+            loadFeed(0);
             feedA = $('.feed');
             loadFeed(1, function(){
                 feedB = $('.feed');
                 done();
-            })
+            });
         });
         // when the loadFeed function has been completed, test if the feed includes at least one entry element
         // I would have rather solved this using .toContainElement('.entry') but that didnt work for me
@@ -134,7 +134,7 @@ $(function() {
             //check that the new feed isnt empty
             expect(feedB).not.toBe(0);
             done();
-        })
+        });
 
     });
 
@@ -150,7 +150,7 @@ $(function() {
             loadFeed(1, function(){
                 feedA = $('.feed');
                 done();
-            })
+            });
         });
 
 
@@ -166,7 +166,7 @@ $(function() {
             $('.feed').find('.entry')[0].find('.deleteButton').click();
             //clicking this button would make the item disapear.
             expect($('.feed').find('.entry')[0]).not.toBeVisible();
-        })
+        });
 
 
     });

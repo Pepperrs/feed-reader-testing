@@ -48,7 +48,7 @@ $(function() {
         it ('have defined names', function(){
             allFeeds.forEach(function (feed) {
                 expect(feed.name).toBeDefined();
-                expect(feed.name).not.toBe(0);
+                expect(feed.name).not.toBe(0); //toBe(0) checks for length of name String
             })
         });
     });
@@ -73,6 +73,7 @@ $(function() {
         it('is shown when clicked and hidden when clicked again', function(){
             body = $('body');
             menuIcon = $('.menu-icon-link');
+            // should be self explainatory
             menuIcon.click();
             expect(body).not.toHaveClass('menu-hidden');
             menuIcon.click();

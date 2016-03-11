@@ -116,10 +116,14 @@ $(function() {
 
         // load the feed two times and save each feed so they can be compared
         beforeEach(function(done){
-            loadFeed(0);
-            feedA = $('.feed');
+            loadFeed(0, function(){
+                feedA = $('.feed').html();
+                done();
+            });
+        });
+        beforeEach(function(done){
             loadFeed(1, function(){
-                feedB = $('.feed');
+                feedB = $('.feed').html();
                 done();
             });
         });
@@ -127,7 +131,7 @@ $(function() {
         // I would have rather solved this using .toContainElement('.entry') but that didnt work for me
         it ('creates a new feed', function(done){
             //compare the two feeds to check if the new one is actually different
-            expect(feedA === feedB).toBeFalsy();
+            expect(feedA).not.toEqual(feedB);
             //check that the new feed isnt empty
             expect(feedB).not.toBe(0);
             done();

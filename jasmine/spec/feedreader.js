@@ -109,11 +109,32 @@ $(function() {
 
 
     describe("New Feed Selection", function(){
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* done: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
 
+        var feedA;
+        var feedB;
+
+        // load the feed two times and save each feed so they can be compared
+        beforeEach(function(done){
+            loadFeed(0)
+            feedA = $('.feed');
+            loadFeed(1, function(){
+                feedB = $('.feed');
+                done();
+            })
+        });
+        // when the loadFeed function has been completed, test if the feed includes at least one entry element
+        // I would have rather solved this using .toContainElement('.entry') but that didnt work for me
+        it ('creates a new feed', function(done){
+            //compare the two feeds to check if the new one is actually different
+            expect(feedA === feedB).toBeFalsy();
+            //check that the new feed isnt empty
+            expect(feedB).not.toBe(0);
+            done();
+        })
 
     })
 
